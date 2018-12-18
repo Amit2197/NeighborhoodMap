@@ -35,4 +35,4 @@ These have a lot of functionality:
 + All code are error-free
 + Infowindow heading taking from FourSquare Api api and content from Wikipedia api.
 ## Display Examlple
-![Image of project](../../src.png)
+![Image of project](scr.png)
