@@ -6,8 +6,7 @@ Udacity NeighborhoodMap
 &emsp;[&#x261B;OverView](#overview)  
 &emsp;[&#x261B;Installation](#installation)  
 &emsp;[&#x261B;Tools and Functionality](#tools-and-functionality)  
-&emsp;[&#x261B;Display Example](#display-examlple)  
-&emsp;[&#x261B;References](#references)  
+&emsp;[&#x261B;Display Example](#display-examlple)    
 
 ## OverView
 We will develop a single page application featuring a map of a neighborhood. There are many functionality like highlighted locations, bouncing marker, third-party data about those locations and various ways to browse the content.  
@@ -33,6 +32,7 @@ These have a lot of functionality:
 + Clicking a marker displays unique information about a location.
 + Markers animate when clicked or mouse over on marker.
 + marker infowindow give information about location.
-
++ All code are error-free
++ Infowindow heading taking from FourSquare Api api and content from Wikipedia api.
 ## Display Examlple
-![Image of project](src.png)
+![Image of project](../../src.png)
