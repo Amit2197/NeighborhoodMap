@@ -1,0 +1,110 @@
+/* Optional: Makes the sample page fill the window. */
+html,
+body, * {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/* horizontal line */
+hr, .pano hr{
+    border: 2px solid aliceblue;
+}
+/* contain map in element */
+.map-box {
+    height: 100%;
+    left: 30px;
+    position: absolute;
+    right: 0px;
+}
+
+/* Always set the map height explicitly to define the size of the div element that contains the map. */
+#map {
+    height: 100%;
+}
+
+/* initially sidebar close when browser load. */
+#close, #options-box {
+    display: none;
+}
+
+/* open/close icon sidebar */
+.icon {
+    background-color: rgba(0, 0, 0, 0.8);
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 30px;
+    cursor: pointer;
+}
+
+/* sidebar */
+#options-box {
+    background: linear-gradient(to bottom, rgba(41, 41, 41, 1), rgba(41, 41, 41, 0.4));
+    height: 100%;
+    padding: 10px;
+    text-align: left;
+    width: 290px;
+    color: white;
+    position: absolute;
+    line-height: 48px;
+}
+
+#options-box h1{
+    margin-bottom: 10px;
+}
+/* style css icon */
+.icon p {
+    font-size: 40px;
+    font-weight: bolder;
+    color: red;
+    top: 50%;
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* popup box in map infowindow */
+.pano {
+    width: 20vw;
+    height: 20vh;
+}
+
+/* infowondow heading */
+.pano h3 {
+    text-align: center;
+    font-size: 2vw;
+}
+
+/* sidebar unordered list */
+ul li {
+    list-style-type: none;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px;
+    margin-bottom: 8px;
+    border: 2px solid aliceblue;
+    border-radius: 5px;
+    line-height: 18px;
+}
+
+/* sidebar unordered list when mouse over */
+ul li:hover {
+    background-color: darkgrey;
+}
+
+/* filtered box */
+input[type='text'] {
+    width: 270px;
+    height: 30px;
+    border: 0.5vw solid aliceblue;
+    padding: 0 15px;
+    border-radius: 5px;
+    margin: 10px 0;
+}

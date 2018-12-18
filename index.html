@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Neighborhood Map</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="js/lib/knockout-3.2.0.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/lib/jquery.js"></script>
+</head>
+<body>
+<div>
+    <!-- Sidebar -->
+    <div id="options-box">
+        <!-- heading -->
+        <h1>NeighborhoodMap</h1>
+        <hr>
+        <!-- filtered box -->
+        <div class="input-search">
+            <input data-bind="textInput: filter" id="area-search" placeholder="filter" type="text">
+        </div>
+        <hr>
+        <div>
+            <h3>Places:</h3>
+            <!-- unordered list to display data -->
+            <ul data-bind="foreach: places">
+                <li data-bind="text: title, click: $parent.showplace"></li>
+            </ul>
+        </div>
+    </div>
+    <!-- clickable sidebar open/close -->
+    <div class="icon" id="open" onclick="opensb()"><p>&#187;</p></div>
+    <div class="icon" id="close" onclick="closesb()"><p>&#171;</p></div>
+
+</div>
+<!-- map -->
+<div class="map-box" id="map-box">
+    <!-- display map -->
+    <div id="map"></div>
+</div>
+
+<!-- google map Api to load map-->
+<script async defer
+        src=
+                "https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAmTSo5RZ_ZiwT-GkKSnpQl7UerNwh8YU0&v=3&callback=initMap">
+</script>
+</body>
+</html>
