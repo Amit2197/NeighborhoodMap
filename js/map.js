@@ -6,6 +6,16 @@ let Markers = [];
 const CLIENT_ID = "3W304TLIFAEP22EEWEPH2MMOAO23EVRXHZV3YC03L2T223II";
 const CLIENT_SECRET = "YZN1IPH5RFDI5QU3XHFGNWM454KFFM4V35M0PM3B0DO5IFJE";
 
+// List of locations
+const locations = [
+    {title: "Gandhi Maidan", location: {lat: 25.61687950677165, lng: 85.14579687308226}},
+    {title: "Eden Garden", location: {lat: 22.564541597977065, lng: 88.34329605102539}},
+    {title: "City Palace, Jaipur", location: {lat: 26.925489271497494, lng: 75.82434552309178}},
+    {title: "Badrinath Temple", location: {lat: 30.53988935917844, lng: 79.5290612332611}},
+    {title: "Qutb Minar", location: {lat: 28.525265048263833, lng: 77.18659304744011}},
+    {title: "Dr. B.C. Roy Engineering College, Durgapur", location: {lat: 23.542869953024006, lng: 87.34426239748105}}
+];
+
 //Initialized Map
 function initMap() {
     // Constructor creates a new map - only center and zoom are required.
@@ -16,18 +26,10 @@ function initMap() {
     ko.applyBindings(new AppViewModel());
 }
 
-function myerrorhandler() {
+// google error handling
+var myerrorhandler = function () {
     alert('sorry,\n Check Your Internet Connection or Come back later.');
-}
-// List of locations
-const locations = [
-    {title: "Gandhi Maidan", location: {lat: 25.61687950677165, lng: 85.14579687308226}},
-    {title: "Eden Garden", location: {lat: 22.564541597977065, lng: 88.34329605102539}},
-    {title: "City Palace, Jaipur", location: {lat: 26.925489271497494, lng: 75.82434552309178}},
-    {title: "Badrinath Temple", location: {lat: 30.53988935917844, lng: 79.5290612332611}},
-    {title: "Qutb Minar", location: {lat: 28.525265048263833, lng: 77.18659304744011}},
-    {title: "Dr. B.C. Roy Engineering College, Durgapur", location: {lat: 23.542869953024006, lng: 87.34426239748105}}
-];
+};
 
 // Initialize data
 function Location(data) {
@@ -149,7 +151,7 @@ function populateInfoWindow(marker, title, position, infowindow, defaultIcon, hi
                         let name = currentVenue['name'];
                         let formattedAddress = currentVenue['location']['formattedAddress'];
                         infowindow.setContent('<div class="gm-in-cn"><h3>' + name + '</h3><hr>' +
-                            '<p><span><b>Description:</b></span><br>' + description + '</p><hr><p><span><b>Address:</b></span><br>&emsp;' +formattedAddress+ '</p></div>');
+                            '<p><span><b>Description:</b></span><br>' + description + '</p><hr><p><span><b>Address:</b></span><br>&emsp;' + formattedAddress + '</p></div>');
                     },
 
                     // error handling if foursquare not load.
@@ -191,4 +193,3 @@ function makeMarkerIcon(markerColor) {
         new google.maps.Size(21, 34));
     return markerImage;
 }
-
