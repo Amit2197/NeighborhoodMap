@@ -27,7 +27,7 @@ function initMap() {
 }
 
 // google error handling
-var myerrorhandler = function () {
+const errMap = function () {
     alert('sorry,\n Check Your Internet Connection or Come back later.');
 };
 
