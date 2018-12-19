@@ -123,7 +123,7 @@ function populateInfoWindow(marker, title, position, infowindow, defaultIcon, hi
 
         // Wikipedia Api to load content.
         $.ajax({
-            url: 'http://en.wikipedia.org/w/api.php',
+            url: 'https://en.wikipedia.org/w/api.php',
             data: {
                 action: 'query',
                 prop: 'extracts',
