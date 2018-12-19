@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7c29b5df-8c73-4021-a0c2-c3dc2ce946b9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/map.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -50,8 +48,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/map.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="125" column="23" selection-start-line="125" selection-start-column="23" selection-end-line="125" selection-end-column="23" />
+            <state relative-caret-position="109">
+              <caret line="185" column="13" selection-start-line="185" selection-start-column="9" selection-end-line="185" selection-end-column="13" />
               <folding>
                 <element signature="e#97#103#1" expanded="true" />
               </folding>
@@ -90,6 +88,7 @@
       <find>trigger</find>
       <find>showp</find>
       <find>console</find>
+      <find>http</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -216,12 +215,12 @@
       <workItem from="1545106538203" duration="14648000" />
       <workItem from="1545122157195" duration="792000" />
       <workItem from="1545173066159" duration="6436000" />
-      <workItem from="1545179549916" duration="11160000" />
+      <workItem from="1545179549916" duration="11527000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="171242000" />
+    <option name="totallyTimeSpent" value="171609000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="39" y="25" width="1327" height="743" extended-state="6" />
@@ -288,8 +287,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/map.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="125" column="23" selection-start-line="125" selection-start-column="23" selection-end-line="125" selection-end-column="23" />
+        <state relative-caret-position="109">
+          <caret line="185" column="13" selection-start-line="185" selection-start-column="9" selection-end-line="185" selection-end-column="13" />
           <folding>
             <element signature="e#97#103#1" expanded="true" />
           </folding>
