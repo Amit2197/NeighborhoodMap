@@ -13,7 +13,7 @@ We will develop a single page application featuring a map of a neighborhood. The
 
 ## Installation
 + Clone the [NeighborhoodMap](https://github.com/Amit2197/NeighborhoodMap) repository.
-+ Run index.html in your browser.
++ Run index.html in your browser.[live](https://amit2197.github.io/NeighborhoodMap/index.html)
 
 ## Tools and Functionality
 There many tools usage like Api, Frameworks:

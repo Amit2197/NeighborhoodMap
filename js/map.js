@@ -1,5 +1,6 @@
 "use strict";
 let map;
+let Markers = [];
 
 // Foursquare Api Client_id and Client_Secret
 const CLIENT_ID = "3W304TLIFAEP22EEWEPH2MMOAO23EVRXHZV3YC03L2T223II";
@@ -15,6 +16,9 @@ function initMap() {
     ko.applyBindings(new AppViewModel());
 }
 
+function myerrorhandler() {
+    alert('sorry,\n Check Your Internet Connection or Come back later.');
+}
 // List of locations
 const locations = [
     {title: "Gandhi Maidan", location: {lat: 25.61687950677165, lng: 85.14579687308226}},
@@ -30,14 +34,12 @@ function Location(data) {
     let self = this;
     self.title = data.title;
     self.position = data.location;
-    self.marker = ko.observable();
+    this.marker = ko.observable();
 }
 
 // AppViewModel
 function AppViewModel() {
     let self = this;
-    self.locationlist = ko.observableArray([]);
-    self.markers = ko.observableArray([]);
     self.filter = ko.observable('');
 
     // Style the markers a bit. This will be our listing marker icon.
@@ -65,34 +67,27 @@ function AppViewModel() {
 
         // Create an onclick event to open the large infowindow at each marker.
         marker.addListener('click', function () {
-            populateInfoWindow(marker, location.title, location.position, largeInfowindow);
-        });
-
-        // Two event listeners - one for mouseover, one for mouseout,
-        // to change the colors back and forth.
-        marker.addListener('mouseover', function () {
-            this.setIcon(highlightedIcon);
-        });
-        marker.addListener('mouseout', function () {
-            this.setIcon(defaultIcon);
+            populateInfoWindow(marker, location.title, location.position, largeInfowindow, defaultIcon, highlightedIcon);
         });
         location.marker = marker;
 
         // Push the location to our array of locationlist.
-        self.locationlist.push(location);
+        Markers.push(location);
     });
 
     // text input field filters the map markers and list items to locations matching.
     self.places = ko.computed(function () {
         let filter = self.filter().toLowerCase();
         if (!filter) {
-            ko.utils.arrayForEach(self.locationlist(), function (item) {
+            ko.utils.arrayForEach(Markers, function (item) {
                 item.marker.setVisible(true);
             });
-            return self.locationlist();
+            return Markers;
         } else {
-            return ko.utils.arrayFilter(self.locationlist(), function (item) {
+            return ko.utils.arrayFilter(Markers, function (item) {
                 let result = (item.title.toLowerCase().search(filter) >= 0);
+                // close all infowindow when open
+                largeInfowindow.close();
                 item.marker.setVisible(result);
                 return result;
             });
@@ -101,20 +96,12 @@ function AppViewModel() {
 
     // Clickable event on list to open the large Infowindow at each marker.
     self.showplace = function (clickedLoc) {
-        populateInfoWindow(clickedLoc.marker, clickedLoc.title, clickedLoc.position, largeInfowindow);
-        clickedLoc.marker.setAnimation(google.maps.Animation.BOUNCE);
-        stopAnimation(clickedLoc.marker);
+        populateInfoWindow(clickedLoc.marker, clickedLoc.title, clickedLoc.position, largeInfowindow, defaultIcon, highlightedIcon);
     };
-
-    function stopAnimation(marker) {
-        setTimeout(function () {
-            marker.setAnimation(null);
-        }, 3000);
-    }
 }
 
 // populated infowindow
-function populateInfoWindow(marker, title, position, infowindow) {
+function populateInfoWindow(marker, title, position, infowindow, defaultIcon, highlightedIcon) {
     map.setCenter(position);
 
     // Check to make sure the infowindow is not already opened on this marker.
@@ -126,6 +113,7 @@ function populateInfoWindow(marker, title, position, infowindow) {
 
         // Make sure the marker property is cleared if the infowindow is closed.
         infowindow.addListener('closeclick', function () {
+            marker.setIcon(defaultIcon);
             infowindow.marker = null;
         });
 
@@ -135,7 +123,7 @@ function populateInfoWindow(marker, title, position, infowindow) {
 
         // Wikipedia Api to load content.
         $.ajax({
-            url: '//en.wikipedia.org/w/api.php',
+            url: 'http://en.wikipedia.org/w/api.php',
             data: {
                 action: 'query',
                 prop: 'extracts',
@@ -159,8 +147,9 @@ function populateInfoWindow(marker, title, position, infowindow) {
                     success: function (data) {
                         let currentVenue = data["response"]["venues"][0];
                         let name = currentVenue['name'];
-                        infowindow.setContent('<div class="pano"><h3>' + name + '</h3><hr>' +
-                            '<p>' + description + '</p></div>');
+                        let formattedAddress = currentVenue['location']['formattedAddress'];
+                        infowindow.setContent('<div class="gm-in-cn"><h3>' + name + '</h3><hr>' +
+                            '<p><span><b>Description:</b></span><br>' + description + '</p><hr><p><span><b>Address:</b></span><br>&emsp;' +formattedAddress+ '</p></div>');
                     },
 
                     // error handling if foursquare not load.
@@ -176,6 +165,14 @@ function populateInfoWindow(marker, title, position, infowindow) {
             }
         });
 
+        // check marker and make default
+        Markers.forEach(function (checkMarker) {
+            checkMarker['marker'].setIcon(defaultIcon);
+        });
+
+        // make marker highlight
+        marker.setIcon(highlightedIcon);
+
         // Open the infowindow on the correct marker.
         infowindow.open(map, marker);
     }
@@ -185,7 +182,7 @@ function populateInfoWindow(marker, title, position, infowindow) {
 // icon of that color. The icon will be 21 px wide by 34 high, have an origin
 // of 0, 0 and be anchored at 10, 34).
 function makeMarkerIcon(markerColor) {
-    let markerImage = new google.maps.MarkerImage(
+    const markerImage = new google.maps.MarkerImage(
         'http://chart.googleapis.com/chart?chst=d_map_spin&chld=1.15|0|' + markerColor +
         '|40|_|%E2%80%A2',
         new google.maps.Size(21, 34),
